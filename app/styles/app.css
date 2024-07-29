@@ -7,9 +7,12 @@
   --color-dark: #000;
   --color-light: #fff;
 }
+* {margin: 0; box-sizing: border-box;}
 
 img {
   border-radius: 4px;
+  max-width: 100%;
+  height: auto;
 }
 
 /*
@@ -17,6 +20,22 @@ img {
 * components/Aside
 * --------------------------------------------------
 */
+
+.w-100 {
+  width: 100%;
+}
+
+.flex{
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 aside {
   background: var(--color-light);
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);

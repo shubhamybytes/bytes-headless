@@ -1,5 +1,6 @@
 import {Await} from '@remix-run/react';
 import {Suspense} from 'react';
+import AnnouncementBar from './Header/AnnouncementBar'
 import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
@@ -8,6 +9,8 @@ import {
   PredictiveSearchForm,
   PredictiveSearchResults,
 } from '~/components/Search';
+import '../styles/app.css'
+import '../styles/base.css'
 
 /**
  * @param {PageLayoutProps}
@@ -25,6 +28,7 @@ export function PageLayout({
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
+      <AnnouncementBar />
       {header && (
         <Header
           header={header}
@@ -116,6 +120,12 @@ function MobileMenuAside({header, publicStoreDomain}) {
     )
   );
 }
+
+
+
+
+
+
 
 /**
  * @typedef {Object} PageLayoutProps
