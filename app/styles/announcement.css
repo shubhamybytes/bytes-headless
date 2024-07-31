@@ -2,4 +2,4 @@
 .announcement-bar-container {--announcement-bg: #000; --textColor: #ffffff;}
 .announcement-bar-container {background-color: var(--announcement-bg); }
 .announcement-slide {padding: 10px; text-transform: capitalize; text-align: center;}
-.announcement-slide  a {color: var(--textColor)}
+.announcement-slide  a, .announcement-slide  p {color: var(--textColor)}

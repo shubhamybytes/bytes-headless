@@ -96,6 +96,12 @@ export default {
 
       const response = await handleRequest(request);
 
+      // Add CSP headers
+      response.headers.set(
+        'Content-Security-Policy',
+        "default-src 'self'; connect-src 'self' https://*.myshopify.com https://*.api.sanity.io; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
+      );
+
       if (session.isPending) {
         response.headers.set('Set-Cookie', await session.commit());
       }

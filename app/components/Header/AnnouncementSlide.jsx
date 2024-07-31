@@ -1,5 +1,5 @@
 export default function AnnouncementSlide({content, redirection}) {
-    console.log(content)
+    
   return (
     <div className="announcement-slide">
       { content && redirection ? (

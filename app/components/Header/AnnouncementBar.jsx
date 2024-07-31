@@ -4,23 +4,30 @@ import '../../styles/slick-theme.css';
 
 import AnnouncementSlide from './AnnouncementSlide';
 import '../../styles/announcement.css';
+import fetchEvents from 'fetchEvents';
+import { Suspense } from 'react';
+
+import { useState, useEffect } from 'react';
+
 
 export default function Announcement() {
+  
+  const [events, setEvents] = useState([]);
+  useEffect(() => {
+    fetchEvents()
+      .then((data) => setEvents(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+
+
   const announcementData = {
-    slides: [
-      {
-        content: 'announcement first',
-        redirection: 'https://www.example.com',
-      },
-      {
-        content: 'announcement second',
-        redirection: 'https://www.example.com',
-      },
-      {
-        content: 'announcement third',
-        redirection: 'https://www.example.com',
-      },
-    ],
+    slides: events.map(slide => {
+      return {
+        title: slide.title,
+        redirection: slide.url || ''
+      }
+    }),
     settings: {
         backgroundColor: '#123432',
         textColor: '#ffffff',
@@ -30,9 +37,9 @@ export default function Announcement() {
 
   const announcementSlides = announcementData.slides.map(
     (announcement, index) => (
-      <AnnouncementSlide
+      <AnnouncementSlide 
         key={index}
-        content={announcement.content}
+        content={announcement.title}
         redirection={announcement.redirection}
       />
     ),
@@ -53,7 +60,10 @@ export default function Announcement() {
     '--announcement-bg': announcementData.settings.backgroundColor,
     '--textColor': announcementData.settings.textColor
   }
-  const classes = `container ${announcementData.settings.fullWidth?'':'page-width'}`
+  const classes = `container ${announcementData.settings.fullWidth?'':'page-width'}`;
+
+  console.log('announcement data is : ', announcementData);
+  
 
   return (
     <div className="announcement-bar-container" style={pageStyle}>
